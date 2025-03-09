@@ -17,8 +17,8 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
 
     int n = G.size();
     // cout << "n: " << n << endl;
-    cout << "source: " << source;
-    cout << "Line15" << endl;
+    // cout << "source: " << source;
+    // cout << "Line15" << endl;
     for (auto item : G) { 
         for (auto it : item) {
             cout << it.src << " " << it.dst << " " << it.weight << endl;
@@ -26,18 +26,17 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
     }
     cout << endl;
 
-    cout << "previous:" << endl; 
-    for (auto word : previous) {
-        cout << word << endl;}
+    // cout << "previous:" << endl; 
+    // for (auto word : previous) {
+    //     cout << word << endl;}
 
     previous.clear();
-    for (int i=0; i<G.size(); ++i){
-        previous[i] = -1;
-    }
 
-    cout << "previous_2:" << endl; 
-    for (auto word : previous) {
-        cout << word << endl;}
+    previous.resize(G.size(), -1);
+
+    // cout << "previous_2:" << endl; 
+    // for (auto word : previous) {
+    //     cout << word << endl;}
 
 
 
@@ -76,15 +75,15 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
 // Get the shortest path from source to destination
 vector<int> extract_shortest_path(const vector<int>& distances, const vector<int>& previous, int destination) {
 
-    cout << "distances:" << endl; 
-    for (auto word : distances) {
-        cout << word << endl;}
+    // cout << "distances:" << endl; 
+    // for (auto word : distances) {
+    //     cout << word << endl;}
 
-    cout << "previous:" << endl; 
-    for (auto word : previous) {
-        cout << word << endl;}
+    // cout << "previous:" << endl; 
+    // for (auto word : previous) {
+    //     cout << word << endl;}
 
-    cout << "destinition: " << destination << endl;
+    // cout << "destinition: " << destination << endl;
     
 
 
@@ -106,6 +105,14 @@ vector<int> extract_shortest_path(const vector<int>& distances, const vector<int
 
 // Print the path and total cost
 void print_path(const vector<int>& v, int total) {
+
+    cout << "v:" << endl; 
+    for (auto word : v) {
+        cout << word << endl;}
+
+    cout << "total: " << total << endl;
+
+
     if (v.empty()) {
         cout << "No path exists." << endl;
         return;
