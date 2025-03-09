@@ -6,6 +6,7 @@
 #include <string>
 #include <cmath>
 #include <algorithm>
+#include <unordered_set>
 
 void error(string word1, string word2, string msg) {
     cerr << "Error between " << word1 << " and " << word2 << ": " << msg << endl;
@@ -67,8 +68,8 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
 
 
     queue<vector<string>> ladder_queue;
-    set<string> visited;
-    set<string> word_list_copy(word_list.begin(), word_list.end());
+    unordered_set<string> visited;
+    unordered_set<string> word_list_copy(word_list.begin(), word_list.end());
     
 
     ladder_queue.push({begin_word});
@@ -137,6 +138,9 @@ void verify_word_ladder() {
     set<string> word_list;
     load_words(word_list, "../src/words.txt");
 
+    vector<string> test = generate_word_ladder("awake", "sleep", word_list);
+    print_word_ladder(test);
+
     // my_assert(generate_word_ladder("cat", "cat", word_list).size() == 0);
     // my_assert(generate_word_ladder("cat", "dog", word_list).size() == 4);
     // my_assert(generate_word_ladder("marty", "curls", word_list).size() == 6);
@@ -144,4 +148,5 @@ void verify_word_ladder() {
     // my_assert(generate_word_ladder("work", "play", word_list).size() == 6);
     // my_assert(generate_word_ladder("sleep", "awake", word_list).size() == 8);
     // my_assert(generate_word_ladder("car", "cheat", word_list).size() == 4);
+
 }
