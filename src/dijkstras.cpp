@@ -110,7 +110,7 @@ void print_path(const vector<int>& v, int total) {
     // for (auto word : v) {
     //     cout << word << endl;}
 
-    cout << "total: " << total << endl;
+    // cout << "total: " << total << endl;
 
 
     if (v.empty()) {
