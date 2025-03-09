@@ -10,8 +10,14 @@ using namespace std;
 // Dijkstra's algorithm
 vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& previous) {
     // n = G.numVertices
+    // vector<int> previous(G.size(), -1);
+
+
+
+
     int n = G.size();
     // cout << "n: " << n << endl;
+    cout << "source: " << source;
     cout << "Line15" << endl;
     for (auto item : G) { 
         for (auto it : item) {
@@ -19,6 +25,22 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
         }
     }
     cout << endl;
+
+    cout << "previous:" << endl; 
+    for (auto word : previous) {
+        cout << word << endl;}
+
+    previous.clear();
+    for (int i=0; i<G.size(); ++i){
+        previous[i] = -1;
+    }
+
+    cout << "previous_2:" << endl; 
+    for (auto word : previous) {
+        cout << word << endl;}
+
+
+
     
     vector<int> distance(n, INF);
     vector<bool> visited(n, false);
@@ -53,6 +75,20 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
 
 // Get the shortest path from source to destination
 vector<int> extract_shortest_path(const vector<int>& distances, const vector<int>& previous, int destination) {
+
+    cout << "distances:" << endl; 
+    for (auto word : distances) {
+        cout << word << endl;}
+
+    cout << "previous:" << endl; 
+    for (auto word : previous) {
+        cout << word << endl;}
+
+    cout << "destinition: " << destination << endl;
+    
+
+
+
     vector<int> path;
     if (distances[destination] == INF) {
         return path; // No path
