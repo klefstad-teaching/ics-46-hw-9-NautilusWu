@@ -50,14 +50,15 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
 
     cout << "begin_word: "<< begin_word << endl;
     cout << "end_word" << end_word << endl;
-    cout << "word_list:" << endl; 
+    cout << "word_list_size:" << word_list.size() << endl;
+    cout << "word_list:" << endl;
     for (auto word : word_list) {
         cout << word << endl;}
 
 
-    queue<vector<string>> ladder_queue;
-    set<string> visited;
-    set<string> word_list_copy(word_list.begin(), word_list.end());
+    // queue<vector<string>> ladder_queue;
+    // set<string> visited;
+    // set<string> word_list_copy(word_list.begin(), word_list.end());
 
     // ladder_queue.push({begin_word});
     // visited.insert(begin_word);
