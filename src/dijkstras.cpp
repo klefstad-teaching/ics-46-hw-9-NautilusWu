@@ -12,6 +12,14 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
     // n = G.numVertices
     int n = G.size();
     // cout << "n: " << n << endl;
+    cout << "Line15" << endl;
+    for (auto item : G) { 
+        for (auto it : item) {
+            cout << it.src << " " << it.dst << " " << it.weight << endl;
+        }
+    }
+    cout << endl;
+    
     vector<int> distance(n, INF);
     vector<bool> visited(n, false);
 
