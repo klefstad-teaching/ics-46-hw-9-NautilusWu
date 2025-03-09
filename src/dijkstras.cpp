@@ -19,12 +19,12 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
     // cout << "n: " << n << endl;
     // cout << "source: " << source;
     // cout << "Line15" << endl;
-    for (auto item : G) { 
-        for (auto it : item) {
-            cout << it.src << " " << it.dst << " " << it.weight << endl;
-        }
-    }
-    cout << endl;
+    // for (auto item : G) { 
+    //     for (auto it : item) {
+    //         cout << it.src << " " << it.dst << " " << it.weight << endl;
+    //     }
+    // }
+    // cout << endl;
 
     // cout << "previous:" << endl; 
     // for (auto word : previous) {
@@ -106,9 +106,9 @@ vector<int> extract_shortest_path(const vector<int>& distances, const vector<int
 // Print the path and total cost
 void print_path(const vector<int>& v, int total) {
 
-    cout << "v:" << endl; 
-    for (auto word : v) {
-        cout << word << endl;}
+    // cout << "v:" << endl; 
+    // for (auto word : v) {
+    //     cout << word << endl;}
 
     cout << "total: " << total << endl;
 
