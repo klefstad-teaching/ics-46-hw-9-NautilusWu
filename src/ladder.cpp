@@ -13,19 +13,14 @@ void error(string word1, string word2, string msg) {
     exit(1);
 }
 
-// Check if the edit distance between two strings is d
-bool edit_distance_within(const std::string& str1, const std::string& str2, int d) {
-    int m = str1.length();
-    int n = str2.length();
+
+bool edit_distance_within(const string& str1, const string& str2, int d) {
+    int m = str1.size();
+    int n = str2.size();
     if (abs(m - n) > d) return false;
-
     vector<vector<int>> dp(m + 1, vector<int>(n + 1));
-
-    for (int i = 0; i <= m; ++i)
-        dp[i][0] = i;
-    for (int j = 0; j <= n; ++j)
-        dp[0][j] = j;
-
+    for (int i = 0; i <= m; ++i) dp[i][0] = i;
+    for (int j = 0; j <= n; ++j) dp[0][j] = j;
     for (int i = 1; i <= m; ++i) {
         for (int j = 1; j <= n; ++j) {
             if (str1[i - 1] == str2[j - 1]) {
@@ -35,43 +30,18 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
             }
         }
     }
-
     return dp[m][n] <= d;
 }
 
-// Check if two strings are adjacent
 bool is_adjacent(const string& word1, const string& word2) {
     return edit_distance_within(word1, word2, 1);
 }
 
-// Generate word ladder
 vector<string> generate_word_ladder(const string& begin_word, const string& end_word, const set<string>& word_list) {
     if (begin_word == end_word) return {};
-
-    // vector<string> test_ladder;
-
-    // test_ladder.push_back("begin_word: ");
-    // test_ladder.push_back(begin_word);
-    // test_ladder.push_back("end_word: ");
-    // test_ladder.push_back(end_word);
-    // test_ladder.push_back("word_list_size: ");
-    // test_ladder.push_back((to_string(word_list.size())));
-    // test_ladder.push_back("word_list: ");
-
-
-    // for (auto word : word_list) {
-    //     test_ladder.push_back(word);
-    //     test_ladder.push_back(" | ");
-    // }
-    // return test_ladder;
-
-
-
     queue<vector<string>> ladder_queue;
     unordered_set<string> visited;
     unordered_set<string> word_list_copy(word_list.begin(), word_list.end());
-    
-
     ladder_queue.push({begin_word});
     visited.insert(begin_word);
     while (!ladder_queue.empty()) {
@@ -98,6 +68,79 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
     }
     return {};
 }
+
+
+// bool edit_distance_within(const std::string& str1, const std::string& str2, int d) {
+//     int m = str1.length();
+//     int n = str2.length();
+//     if (abs(m - n) > d) return false;
+
+//     vector<vector<int>> dp(m + 1, vector<int>(n + 1));
+
+//     for (int i = 0; i <= m; ++i)
+//         dp[i][0] = i;
+//     for (int j = 0; j <= n; ++j)
+//         dp[0][j] = j;
+
+//     for (int i = 1; i <= m; ++i) {
+//         for (int j = 1; j <= n; ++j) {
+//             if (str1[i - 1] == str2[j - 1]) {
+//                 dp[i][j] = dp[i - 1][j - 1];
+//             } else {
+//                 dp[i][j] = 1 + min({dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]});
+//             }
+//         }
+//     }
+
+//     return dp[m][n] <= d;
+// }
+
+
+
+
+// // Check if two strings are adjacent
+// bool is_adjacent(const string& word1, const string& word2) {
+//     return edit_distance_within(word1, word2, 1);
+// }
+
+// // Generate word ladder
+// vector<string> generate_word_ladder(const string& begin_word, const string& end_word, const set<string>& word_list) {
+//     if (begin_word == end_word) return {};
+
+
+
+//     queue<vector<string>> ladder_queue;
+//     unordered_set<string> visited;
+//     unordered_set<string> word_list_copy(word_list.begin(), word_list.end());
+    
+
+//     ladder_queue.push({begin_word});
+//     visited.insert(begin_word);
+//     while (!ladder_queue.empty()) {
+//         vector<string> ladder = ladder_queue.front();
+//         ladder_queue.pop();
+//         string last_word = ladder.back();
+//         for (auto it = word_list_copy.begin(); it != word_list_copy.end(); ) {
+//             const string& word = *it;
+//             if (is_adjacent(last_word, word)) {
+//                 if (visited.find(word) == visited.end()) {
+//                     visited.insert(word);
+//                     vector<string> new_ladder = ladder;
+//                     new_ladder.push_back(word);
+//                     if (word == end_word) {
+//                         return new_ladder;
+//                     }
+//                     ladder_queue.push(new_ladder);
+//                 }
+//                 it = word_list_copy.erase(it);
+//             } else {
+//                 ++it;
+//             }
+//         }
+//     }
+//     return {};
+
+// }
 
 // Load words from file
 void load_words(set<string>& word_list, const string& file_name) {
