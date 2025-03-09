@@ -113,10 +113,10 @@ void print_path(const vector<int>& v, int total) {
     // cout << "total: " << total << endl;
 
 
-    if (v.empty()) {
-        cout << "No path exists." << endl;
-        return;
-    }
+    // if (v.empty()) {
+    //     cout << "No path exists." << endl;
+    //     return;
+    // }
 
     for (size_t i = 0; i < v.size(); ++i) {
         cout << v[i] << " ";
