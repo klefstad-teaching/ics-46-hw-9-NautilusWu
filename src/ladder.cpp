@@ -101,6 +101,7 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
 // Load words from file
 void load_words(set<string>& word_list, const string& file_name) {
     word_list.clear();
+    cout << "word_list_size: " << word_list.size();
 
 
     ifstream file(file_name);
