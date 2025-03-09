@@ -35,7 +35,7 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
         }
     }
 
-    return dp[m][n] == d;
+    return dp[m][n] <= d;
 }
 
 // Check if two strings are adjacent
@@ -96,7 +96,7 @@ void load_words(set<string>& word_list, const string& file_name) {
 // Print word ladder
 void print_word_ladder(const vector<string>& ladder) {
     if (ladder.empty()) {
-        cout << "Cannot find a word ladder." << endl;
+        cout << "No word ladder found." << endl;
         return;
     }
 
