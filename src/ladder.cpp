@@ -47,61 +47,60 @@ bool is_adjacent(const string& word1, const string& word2) {
 vector<string> generate_word_ladder(const string& begin_word, const string& end_word, const set<string>& word_list) {
     if (begin_word == end_word) return {};
 
-    vector<string> test_ladder;
+    // vector<string> test_ladder;
 
-    test_ladder.push_back("begin_word: ");
-    test_ladder.push_back(begin_word);
-    test_ladder.push_back("end_word: ");
-    test_ladder.push_back(end_word);
-    test_ladder.push_back("word_list_size: ");
-    test_ladder.push_back((to_string(word_list.size())));
-    test_ladder.push_back("word_list: ");
-
-
-    for (auto word : word_list) {
-        test_ladder.push_back(word);
-        test_ladder.push_back(" | ");
-    }
-    return test_ladder;
+    // test_ladder.push_back("begin_word: ");
+    // test_ladder.push_back(begin_word);
+    // test_ladder.push_back("end_word: ");
+    // test_ladder.push_back(end_word);
+    // test_ladder.push_back("word_list_size: ");
+    // test_ladder.push_back((to_string(word_list.size())));
+    // test_ladder.push_back("word_list: ");
 
 
+    // for (auto word : word_list) {
+    //     test_ladder.push_back(word);
+    //     test_ladder.push_back(" | ");
+    // }
+    // return test_ladder;
 
-    // queue<vector<string>> ladder_queue;
-    // set<string> visited;
-    // set<string> word_list_copy(word_list.begin(), word_list.end());
+
+
+    queue<vector<string>> ladder_queue;
+    set<string> visited;
+    set<string> word_list_copy(word_list.begin(), word_list.end());
     
 
-    // ladder_queue.push({begin_word});
-    // visited.insert(begin_word);
-    // while (!ladder_queue.empty()) {
-    //     vector<string> ladder = ladder_queue.front();
-    //     ladder_queue.pop();
-    //     string last_word = ladder.back();
-    //     for (auto it = word_list_copy.begin(); it != word_list_copy.end(); ) {
-    //         const string& word = *it;
-    //         if (is_adjacent(last_word, word)) {
-    //             if (visited.find(word) == visited.end()) {
-    //                 visited.insert(word);
-    //                 vector<string> new_ladder = ladder;
-    //                 new_ladder.push_back(word);
-    //                 if (word == end_word) {
-    //                     return new_ladder;
-    //                 }
-    //                 ladder_queue.push(new_ladder);
-    //             }
-    //             it = word_list_copy.erase(it);
-    //         } else {
-    //             ++it;
-    //         }
-    //     }
-    // }
-    // return {};
+    ladder_queue.push({begin_word});
+    visited.insert(begin_word);
+    while (!ladder_queue.empty()) {
+        vector<string> ladder = ladder_queue.front();
+        ladder_queue.pop();
+        string last_word = ladder.back();
+        for (auto it = word_list_copy.begin(); it != word_list_copy.end(); ) {
+            const string& word = *it;
+            if (is_adjacent(last_word, word)) {
+                if (visited.find(word) == visited.end()) {
+                    visited.insert(word);
+                    vector<string> new_ladder = ladder;
+                    new_ladder.push_back(word);
+                    if (word == end_word) {
+                        return new_ladder;
+                    }
+                    ladder_queue.push(new_ladder);
+                }
+                it = word_list_copy.erase(it);
+            } else {
+                ++it;
+            }
+        }
+    }
+    return {};
 }
 
 // Load words from file
 void load_words(set<string>& word_list, const string& file_name) {
     word_list.clear();
-    cout << "word_list_size: " << word_list.size();
 
 
     ifstream file(file_name);
