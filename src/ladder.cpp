@@ -55,34 +55,34 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
         cout << word << endl;}
 
 
-    // queue<vector<string>> ladder_queue;
-    // set<string> visited;
-    // set<string> word_list_copy(word_list.begin(), word_list.end());
+    queue<vector<string>> ladder_queue;
+    set<string> visited;
+    set<string> word_list_copy(word_list.begin(), word_list.end());
 
-    // ladder_queue.push({begin_word});
-    // visited.insert(begin_word);
-    // while (!ladder_queue.empty()) {
-    //     vector<string> ladder = ladder_queue.front();
-    //     ladder_queue.pop();
-    //     string last_word = ladder.back();
-    //     for (auto it = word_list_copy.begin(); it != word_list_copy.end(); ) {
-    //         const string& word = *it;
-    //         if (is_adjacent(last_word, word)) {
-    //             if (visited.find(word) == visited.end()) {
-    //                 visited.insert(word);
-    //                 vector<string> new_ladder = ladder;
-    //                 new_ladder.push_back(word);
-    //                 if (word == end_word) {
-    //                     return new_ladder;
-    //                 }
-    //                 ladder_queue.push(new_ladder);
-    //             }
-    //             it = word_list_copy.erase(it);
-    //         } else {
-    //             ++it;
-    //         }
-    //     }
-    // }
+    ladder_queue.push({begin_word});
+    visited.insert(begin_word);
+    while (!ladder_queue.empty()) {
+        vector<string> ladder = ladder_queue.front();
+        ladder_queue.pop();
+        string last_word = ladder.back();
+        for (auto it = word_list_copy.begin(); it != word_list_copy.end(); ) {
+            const string& word = *it;
+            if (is_adjacent(last_word, word)) {
+                if (visited.find(word) == visited.end()) {
+                    visited.insert(word);
+                    vector<string> new_ladder = ladder;
+                    new_ladder.push_back(word);
+                    if (word == end_word) {
+                        return new_ladder;
+                    }
+                    ladder_queue.push(new_ladder);
+                }
+                it = word_list_copy.erase(it);
+            } else {
+                ++it;
+            }
+        }
+    }
     return {};
 }
 
